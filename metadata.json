@@ -1,0 +1,6 @@
+{
+  "name": "Gestão de Atas e Documentos Oficiais",
+  "description": "Sistema completo e responsivo para gestão profissional, assinatura, versionamento e relatórios de Atas e Documentos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
