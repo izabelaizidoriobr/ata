@@ -4,20 +4,20 @@
  */
 
 import React from 'react';
-import { 
-  LayoutDashboard, 
-  FileText, 
-  FolderLock, 
-  UploadCloud, 
-  Trash2, 
-  Users, 
-  ShieldCheck, 
-  BarChart3, 
-  FileSignature, 
+import {
+  LayoutDashboard,
+  FileText,
+  FolderLock,
+  UploadCloud,
+  Trash2,
+  Users,
+  ShieldCheck,
+  BarChart3,
+  FileSignature,
   NotebookTabs,
-  Eye, 
-  Database, 
-  Settings, 
+  Eye,
+  Database,
+  Settings,
   Binary,
   FolderOpen,
   Menu,
@@ -34,7 +34,7 @@ interface SidebarProps {
 export default function Sidebar({ currentView, onNavigate, isOpen, onClose }: SidebarProps) {
   const menuItems = [
     { id: 'dashboard', label: 'Painel geral', icon: LayoutDashboard, category: 'NÚCLEO' },
-    
+
     { id: 'datas', label: 'Atas', icon: FileText, category: 'DOCUMENTOS' },
     { id: 'categories', label: 'Categorias', icon: FolderLock, category: 'DOCUMENTOS' },
     { id: 'uploads', label: 'Uploads', icon: UploadCloud, category: 'DOCUMENTOS' },
@@ -43,13 +43,9 @@ export default function Sidebar({ currentView, onNavigate, isOpen, onClose }: Si
 
     { id: 'usuarios', label: 'Usuários', icon: Users, category: 'CREDENCIAMENTO' },
     { id: 'permissoes', label: 'Permissões', icon: ShieldCheck, category: 'CREDENCIAMENTO' },
-    { id: 'assinaturas', label: 'Assinaturas', icon: FileSignature, category: 'CREDENCIAMENTO' },
-    { id: 'aprovacoes', label: 'Aprovações', icon: NotebookTabs, category: 'CREDENCIAMENTO' },
+
     { id: 'relatorios', label: 'Relatórios', icon: BarChart3, category: 'CREDENCIAMENTO' },
-    
-    { id: 'auditoria', label: 'Auditoria', icon: Binary, category: 'SISTEMA' },
-    { id: 'backup', label: 'Backup', icon: Database, category: 'SISTEMA' },
-    { id: 'configuracoes', label: 'Configurações', icon: Settings, category: 'SISTEMA' },
+
   ];
 
   // Group items by category
@@ -59,8 +55,8 @@ export default function Sidebar({ currentView, onNavigate, isOpen, onClose }: Si
     <>
       {/* Mobile Backdrop */}
       {isOpen && (
-        <div 
-          onClick={onClose} 
+        <div
+          onClick={onClose}
           className="fixed inset-0 bg-slate-950/60 z-40 lg:hidden backdrop-blur-sm transition-opacity"
         />
       )}
@@ -87,7 +83,7 @@ export default function Sidebar({ currentView, onNavigate, isOpen, onClose }: Si
               <p className="text-[10px] text-white/50 font-medium tracking-widest uppercase">Oficial Docs</p>
             </div>
           </div>
-          <button 
+          <button
             onClick={onClose}
             className="lg:hidden p-1.5 rounded-lg bg-white/10 text-white/70 hover:text-white transition-colors"
           >
@@ -121,8 +117,8 @@ export default function Sidebar({ currentView, onNavigate, isOpen, onClose }: Si
                         className={`
                           w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium
                           transition-all duration-200 group relative
-                          ${isActive 
-                            ? 'bg-white/10 text-white font-semibold' 
+                          ${isActive
+                            ? 'bg-white/10 text-white font-semibold'
                             : 'text-white/70 hover:text-white hover:bg-white/5 hover:translate-x-1'
                           }
                         `}

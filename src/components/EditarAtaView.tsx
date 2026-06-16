@@ -23,7 +23,7 @@ export default function EditarAtaView({ ata, categorias, onSave, onCancel }: Edi
   const [localReuniao, setLocalReuniao] = useState(ata.localReuniao || 'Sala de Reunião Principal');
   const [presidente, setPresidente] = useState(ata.presidente);
   const [secretario, setSecretario] = useState(ata.secretario);
-  
+
   // Versions change description
   const [versaoDescricao, setVersaoDescricao] = useState('Atualização de redação jurídica e anexação de chaves criptográficas.');
 
@@ -93,10 +93,10 @@ export default function EditarAtaView({ ata, categorias, onSave, onCancel }: Edi
 
   return (
     <div className="space-y-6 font-sans">
-      
+
       {/* Header */}
       <div className="flex items-center space-x-3 pb-3 border-b border-slate-100 dark:border-slate-800">
-        <button 
+        <button
           onClick={onCancel}
           className="p-2 text-slate-500 hover:text-indigo-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-xl transition animate-fade-in"
         >
@@ -109,10 +109,10 @@ export default function EditarAtaView({ ata, categorias, onSave, onCancel }: Edi
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-fade-in mt-2">
-        
+
         {/* Left Column Fields */}
         <div className="lg:col-span-2 space-y-6">
-          
+
           <div className="p-6 bg-white dark:bg-[#0E1022] border border-slate-100 dark:border-slate-800/80 rounded-2xl shadow-sm space-y-5">
             <h4 className="text-xs font-bold text-indigo-550 uppercase tracking-widest flex items-center">
               <FileText size={14} className="mr-2" />
@@ -211,7 +211,7 @@ export default function EditarAtaView({ ata, categorias, onSave, onCancel }: Edi
 
         {/* Right column: Version snaps, tags, files */}
         <div className="space-y-6">
-          
+
           {/* Version Snap details */}
           <div className="p-6 bg-white dark:bg-[#0E1022] border border-slate-100 dark:border-slate-800 rounded-2xl shadow-sm space-y-4">
             <h4 className="text-xs font-bold text-rose-500 uppercase tracking-widest flex items-center">
