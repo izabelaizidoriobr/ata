@@ -45,7 +45,6 @@ export default function App() {
     if (saved) {
       try { return JSON.parse(saved); } catch (e) { return null; }
     }
-    // Default logged in user matching custom specs
     return {
       id: 'usr-1',
       nome: 'Administrador',
@@ -253,7 +252,6 @@ export default function App() {
       }
     ];
 
-    // Build signature requirements representation
     const signatures: Ata['assinaturas'] = [
       { id: 'sgn-1', nome: newAta.presidente, cargo: 'Presidente Designado', status: 'pendente' },
       { id: 'sgn-2', nome: newAta.secretario, cargo: 'Secretário do Expediente', status: 'pendente' }
@@ -373,7 +371,6 @@ export default function App() {
           return sig;
         });
 
-        // If all signed, immediately move to 'publicado'
         const allSigned = updatedSigs.every(s => s.status === 'concluido');
 
         return {
@@ -439,24 +436,19 @@ export default function App() {
     setNotificacoes(prev => prev.map(n => n.id === id ? { ...n, lida: true } : n));
   };
 
-  // Global searching scope
   const handleGlobalSearch = (term: string) => {
     setGlobalSearchTerm(term);
   };
 
-  // Resolve matching display
   const singleSelectedAta = selectedAtaId ? atas.find(a => a.id === selectedAtaId) : null;
   const singleEditingAta = editingAtaId ? atas.find(a => a.id === editingAtaId) : null;
 
-  // Root authentication layout check
   if (!currentUser) {
     return <LoginPage onSuccess={handleLoginSuccess} />;
   }
 
   return (
     <div className="flex h-screen bg-[#F8FAFC] dark:bg-[#070814] text-slate-800 dark:text-slate-100 font-sans transition-colors overflow-hidden">
-
-      {/* Sidebar drawer handles */}
       <Sidebar
         currentView={currentView}
         onNavigate={navigateTo}
@@ -464,10 +456,7 @@ export default function App() {
         onClose={() => setSidebarOpen(false)}
       />
 
-      {/* Main app panel */}
       <div className="flex-1 flex flex-col h-screen overflow-hidden">
-
-        {/* Header toolbar */}
         <Header
           onSearch={handleGlobalSearch}
           notificacoes={notificacoes}
@@ -479,10 +468,7 @@ export default function App() {
           onNavigate={navigateTo}
         />
 
-        {/* Dynamic scrollable body containing active views */}
         <main className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-slate-200">
-
-          {/* Hamburger trigger for small monitors */}
           <div className="lg:hidden pb-4">
             <button
               onClick={() => setSidebarOpen(true)}
@@ -493,7 +479,6 @@ export default function App() {
             </button>
           </div>
 
-          {/* Router dispatcher switcher */}
           {singleSelectedAta ? (
             <VisualizarAtaView
               ata={singleSelectedAta}
@@ -638,9 +623,7 @@ export default function App() {
                 );
             }
           })()}
-
         </main>
-
       </div>
     </div>
   );
