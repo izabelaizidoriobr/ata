@@ -4,40 +4,40 @@
  */
 
 import React, { useState } from 'react';
-import { 
-  FileText, 
-  FolderLock, 
-  DownloadCloud, 
-  Users, 
-  ArrowUpRight, 
-  Filter, 
-  Plus, 
-  Eye, 
-  Edit3, 
-  Download, 
-  MoreVertical, 
-  FileDown, 
-  DollarSign, 
-  FileSpreadsheet, 
-  TrendingUp, 
-  Clock, 
+import {
+  FileText,
+  FolderLock,
+  DownloadCloud,
+  Users,
+  ArrowUpRight,
+  Filter,
+  Plus,
+  Eye,
+  Edit3,
+  Download,
+  MoreVertical,
+  FileDown,
+  DollarSign,
+  FileSpreadsheet,
+  TrendingUp,
+  Clock,
   CheckCircle,
   FolderOpen
 } from 'lucide-react';
-import { 
-  BarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  Tooltip, 
-  ResponsiveContainer, 
-  PieChart, 
-  Pie, 
-  Cell, 
-  AreaChart, 
-  Area, 
-  LineChart, 
-  Line 
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+  AreaChart,
+  Area,
+  LineChart,
+  Line
 } from 'recharts';
 import { Ata, Categoria, LogAuditoria } from '../types';
 import { COMPONENT_COLORS } from '../data/mockData';
@@ -112,7 +112,7 @@ export default function DashboardView({
 
   return (
     <div className="space-y-6 animate-fade-in font-sans">
-      
+
       {/* Upper Welcome Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between pb-2">
         <div>
@@ -120,14 +120,7 @@ export default function DashboardView({
           <p className="text-sm text-slate-500 dark:text-slate-400">Bem-vindo de volta!</p>
         </div>
         <div className="mt-4 md:mt-0 flex items-center space-x-3">
-          <button 
-            onClick={() => onNavigate('relatorios')}
-            className="px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 bg-white dark:bg-[#151737] border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-xl transition duration-200 flex items-center shadow-sm"
-          >
-            <TrendingUp size={15} className="mr-2 text-slate-400" />
-            Análise Avançada
-          </button>
-          <button 
+          <button
             onClick={() => onNavigate('nova-ata')}
             className="px-4 py-2 text-xs font-semibold text-white bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 rounded-xl shadow-md cursor-pointer transition duration-200 flex items-center"
           >
@@ -139,7 +132,7 @@ export default function DashboardView({
 
       {/* 4 KPI Cards matching original screenshot */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        
+
         {/* KPI 1: Atas */}
         <div className="p-5 bg-white dark:bg-[#0E1022] border border-slate-100 dark:border-slate-800/80 rounded-2xl shadow-sm flex flex-col justify-between transition-all">
           <div className="flex items-start justify-between">
@@ -220,7 +213,7 @@ export default function DashboardView({
 
       {/* Main Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
+
         {/* Large Bar Chart - Atas Publicadas por Mês */}
         <div className="lg:col-span-2 p-6 bg-white dark:bg-[#0E1022] border border-slate-100 dark:border-slate-800/85 rounded-2xl shadow-sm">
           <div className="flex items-center justify-between mb-6">
@@ -247,22 +240,22 @@ export default function DashboardView({
               <BarChart data={barData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
                 <defs>
                   <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor={GRADIENT_START} stopOpacity={0.95}/>
-                    <stop offset="100%" stopColor={GRADIENT_END} stopOpacity={0.4}/>
+                    <stop offset="0%" stopColor={GRADIENT_START} stopOpacity={0.95} />
+                    <stop offset="100%" stopColor={GRADIENT_END} stopOpacity={0.4} />
                   </linearGradient>
                 </defs>
-                <XAxis 
-                  dataKey="name" 
-                  axisLine={false} 
-                  tickLine={false} 
-                  tick={{ fill: isDarkMode ? '#64748B' : '#94A3B8', fontSize: 11 }} 
+                <XAxis
+                  dataKey="name"
+                  axisLine={false}
+                  tickLine={false}
+                  tick={{ fill: isDarkMode ? '#64748B' : '#94A3B8', fontSize: 11 }}
                 />
-                <YAxis 
-                  axisLine={false} 
-                  tickLine={false} 
-                  tick={{ fill: isDarkMode ? '#64748B' : '#94A3B8', fontSize: 11 }} 
+                <YAxis
+                  axisLine={false}
+                  tickLine={false}
+                  tick={{ fill: isDarkMode ? '#64748B' : '#94A3B8', fontSize: 11 }}
                 />
-                <Tooltip 
+                <Tooltip
                   cursor={{ fill: 'rgba(99, 102, 241, 0.04)' }}
                   content={({ active, payload }) => {
                     if (active && payload && payload.length) {
@@ -276,11 +269,11 @@ export default function DashboardView({
                     return null;
                   }}
                 />
-                <Bar 
-                  dataKey="atas" 
-                  fill="url(#barGradient)" 
-                  radius={[5, 5, 0, 0]} 
-                  maxBarSize={32} 
+                <Bar
+                  dataKey="atas"
+                  fill="url(#barGradient)"
+                  radius={[5, 5, 0, 0]}
+                  maxBarSize={32}
                 />
               </BarChart>
             </ResponsiveContainer>
@@ -340,7 +333,7 @@ export default function DashboardView({
 
       {/* Widgets & Uploads Column Row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
+
         {/* Recent Uploads widget - matching design exactly */}
         <div className="p-6 bg-white dark:bg-[#0E1022] border border-slate-100 dark:border-slate-800/85 rounded-2xl shadow-sm flex flex-col justify-between">
           <div className="flex items-center justify-between mb-4">
@@ -348,7 +341,7 @@ export default function DashboardView({
               <h4 className="text-sm font-bold text-slate-800 dark:text-slate-100">Uploads recentes</h4>
               <p className="text-xs text-slate-400 dark:text-slate-500">Arquivos anexados recentemente</p>
             </div>
-            <button 
+            <button
               onClick={() => onNavigate('uploads')}
               className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline hover:opacity-95"
             >
@@ -382,7 +375,7 @@ export default function DashboardView({
               <h4 className="text-sm font-bold text-slate-800 dark:text-slate-100">Atividade recente</h4>
               <p className="text-xs text-slate-400 dark:text-slate-500">Histórico operacional do sistema</p>
             </div>
-            <button 
+            <button
               onClick={() => onNavigate('auditoria')}
               className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline hover:opacity-95"
             >
@@ -418,7 +411,7 @@ export default function DashboardView({
 
       {/* Main Table: Atas Recentes */}
       <div className="p-6 bg-white dark:bg-[#0E1022] border border-slate-100 dark:border-slate-800/85 rounded-2xl shadow-sm">
-        
+
         {/* Header toolbar */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-5 border-b border-slate-100 dark:border-slate-800/60 gap-4">
           <div>
@@ -437,19 +430,12 @@ export default function DashboardView({
                 <option key={cat.id} value={cat.id}>{cat.nome}</option>
               ))}
             </select>
-            <button 
+            <button
               onClick={() => onNavigate('datas')}
               className="px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl hover:bg-slate-100/70 dark:hover:bg-slate-900/60 hover:opacity-95 flex items-center transition cursor-pointer"
             >
               <Filter size={13} className="mr-1 text-slate-400" />
               Filtros
-            </button>
-            <button 
-              onClick={() => onNavigate('nova-ata')}
-              className="px-3.5 py-1.5 text-xs font-semibold text-white bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 rounded-xl shadow-md flex items-center transition cursor-pointer"
-            >
-              <Plus size={13} className="mr-1" />
-              Nova Ata
             </button>
           </div>
         </div>
@@ -481,24 +467,24 @@ export default function DashboardView({
                       <td className="py-3 px-3 text-slate-850 dark:text-slate-300 font-bold whitespace-nowrap">
                         {ata.numero}
                       </td>
-                      
+
                       {/* Document Title */}
                       <td className="py-3 px-3 text-slate-700 dark:text-slate-200 truncate max-w-xs" title={ata.titulo}>
                         {ata.titulo}
                       </td>
-                      
+
                       {/* Category Badge */}
                       <td className="py-3 px-3">
                         <span className={`inline-block px-2.5 py-1 text-[10px] font-semibold rounded-lg border ${badgesClass}`}>
                           {resolvedCategory?.nome || 'Geral'}
                         </span>
                       </td>
-                      
+
                       {/* Publish / Meeting Date */}
                       <td className="py-3 px-3 text-slate-500 dark:text-slate-400 font-mono whitespace-nowrap">
                         {ata.dataReuniao.split('-').reverse().join('/')}
                       </td>
-                      
+
                       {/* Live status badge */}
                       <td className="py-3 px-3">
                         {ata.status === 'publicado' ? (
@@ -519,21 +505,21 @@ export default function DashboardView({
                       {/* Action buttons matching exact design specs */}
                       <td className="py-3 px-3">
                         <div className="flex items-center justify-center space-x-1.5 relative">
-                          <button 
+                          <button
                             onClick={() => onSelectAta(ata)}
                             className="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-950/30 rounded-lg transition-all"
                             title="Visualizar ata"
                           >
                             <Eye size={14} />
                           </button>
-                          <button 
+                          <button
                             onClick={() => onEditAta(ata.id)}
                             className="p-1.5 text-slate-400 hover:text-amber-600 hover:bg-amber-50 dark:hover:bg-amber-950/30 rounded-lg transition-all"
                             title="Editar ata"
                           >
                             <Edit3 size={14} />
                           </button>
-                          <a 
+                          <a
                             href={`data:text/plain;charset=utf-8,${encodeURIComponent(ata.descricao)}`}
                             download={ata.numero + '.txt'}
                             className="p-1.5 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 rounded-lg transition-all flex items-center justify-center"
@@ -543,7 +529,7 @@ export default function DashboardView({
                           </a>
 
                           <div className="relative">
-                            <button 
+                            <button
                               onClick={() => setShowRowOptions(showRowOptions === ata.id ? null : ata.id)}
                               className="p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-lg transition-all"
                             >
@@ -588,7 +574,7 @@ export default function DashboardView({
             Mostrando <span className="font-semibold text-slate-800 dark:text-slate-200">1 a 5</span> de <span className="font-semibold text-slate-800 dark:text-slate-200">1.248 Atas</span>
           </p>
           <div className="flex items-center space-x-1">
-            <button 
+            <button
               disabled={currentPage === 1}
               onClick={() => setCurrentPage(1)}
               className="p-1.5 text-xs font-semibold rounded-lg bg-slate-50 dark:bg-slate-900 text-slate-500 border border-slate-200/50 dark:border-slate-800 cursor-not-allowed"
