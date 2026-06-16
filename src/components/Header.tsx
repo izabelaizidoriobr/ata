@@ -46,22 +46,6 @@ export default function Header({
 
   return (
     <header className="sticky top-0 z-30 h-16 flex items-center justify-between px-8 bg-white dark:bg-[#0E1022] border-b border-slate-200 dark:border-slate-800 transition-colors flex-shrink-0">
-      
-      {/* Search Bar - Global Search capability */}
-      <form onSubmit={handleSearchSubmit} className="relative flex-1 max-w-md mr-4">
-        <label htmlFor="global-search" className="sr-only">Pesquisar atas, usuários...</label>
-        <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 dark:text-slate-500">
-          <Search size={18} />
-        </div>
-        <input
-          id="global-search"
-          type="text"
-          placeholder="Pesquisar atas, usuários, categorias..."
-          value={searchTerm}
-          onChange={handleSearchChange}
-          className="w-full pl-10 pr-3 py-2 text-sm bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-sans"
-        />
-      </form>
 
       {/* Action Utilities & Settings */}
       <div className="flex items-center space-x-4">
@@ -104,14 +88,14 @@ export default function Header({
                   <p className="p-4 text-xs text-center text-slate-400 dark:text-slate-500">Nenhuma notificação nova.</p>
                 ) : (
                   notificacoes.map((item) => (
-                    <div 
-                      key={item.id} 
+                    <div
+                      key={item.id}
                       className={`p-4 hover:bg-slate-50 dark:hover:bg-slate-900/30 transition-colors flex flex-col ${item.lida ? 'opacity-70' : 'bg-indigo-50/20 dark:bg-indigo-950/10'}`}
                     >
                       <div className="flex justify-between items-start mb-1">
                         <span className="text-xs font-bold text-slate-800 dark:text-slate-200">{item.titulo}</span>
                         {!item.lida && (
-                          <button 
+                          <button
                             onClick={(e) => {
                               e.stopPropagation();
                               onMarkAsRead(item.id);
@@ -130,7 +114,7 @@ export default function Header({
                 )}
               </div>
               <div className="p-2 border-t border-slate-100 dark:border-slate-800">
-                <button 
+                <button
                   onClick={() => {
                     setShowNotifications(false);
                     onNavigate('configuracoes');
