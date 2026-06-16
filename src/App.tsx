@@ -132,7 +132,7 @@ export default function App() {
   // Search filter
   const [globalSearchTerm, setGlobalSearchTerm] = useState('');
 
-  // Apply dark mode theme
+  // Apply dark mode theme 
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
