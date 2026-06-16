@@ -6,14 +6,14 @@
 import React, { useState, useEffect } from 'react';
 import { Menu } from 'lucide-react';
 import { Ata, Categoria, Usuario, LogAuditoria, BackupItem, ConfigGeral, Notificacao, AtaStatus } from './types';
-import { 
-  initialAtas, 
-  initialCategories, 
-  initialUsuarios, 
-  initialNotificacoes, 
-  initialAuditLogs, 
-  initialBackups, 
-  defaultConfig 
+import {
+  initialAtas,
+  initialCategories,
+  initialUsuarios,
+  initialNotificacoes,
+  initialAuditLogs,
+  initialBackups,
+  defaultConfig
 } from './data/mockData';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
@@ -22,20 +22,20 @@ import AtasView from './components/AtasView';
 import NovaAtaView from './components/NovaAtaView';
 import VisualizarAtaView from './components/VisualizarAtaView';
 import EditarAtaView from './components/EditarAtaView';
-import { 
-  CategoriesView, 
-  UploadsView, 
-  LixeiraView, 
-  UsersView, 
-  PermissionsView, 
-  AuditoriaView, 
-  BackupView, 
-  ConfigurationView, 
-  LoginPage, 
-  DocumentosCentral, 
-  AssinaturasQueueView, 
-  AprovacoesView, 
-  ReportsView 
+import {
+  CategoriesView,
+  UploadsView,
+  LixeiraView,
+  UsersView,
+  PermissionsView,
+  AuditoriaView,
+  BackupView,
+  ConfigurationView,
+  LoginPage,
+  DocumentosCentral,
+  AssinaturasQueueView,
+  AprovacoesView,
+  ReportsView
 } from './components/AdminComponents';
 
 export default function App() {
@@ -115,6 +115,7 @@ export default function App() {
     }
     return initialBackups;
   });
+
 
   const [config, setConfig] = useState<ConfigGeral>(() => {
     const saved = localStorage.getItem('oficial_docs_config');
@@ -239,7 +240,7 @@ export default function App() {
 
   // Atas modifiers
   const handleSaveNewAta = (
-    newAta: Omit<Ata, 'id' | 'downloads' | 'comentarios' | 'historicoVersoes' | 'assinaturas'>, 
+    newAta: Omit<Ata, 'id' | 'downloads' | 'comentarios' | 'historicoVersoes' | 'assinaturas'>,
     publishImmediately: boolean
   ) => {
     const randId = 'ata-' + Math.floor(Math.random() * 10000);
@@ -420,7 +421,7 @@ export default function App() {
     const fileNum = backups.length + 1;
     const newBak: BackupItem = {
       id: 'bak-' + Math.random().toString(36).substr(2, 9),
-      nome: `backup_regimento_manual_${new Date().toISOString().split('T')[0].replace(/-/g,'')}_v${fileNum}.sql`,
+      nome: `backup_regimento_manual_${new Date().toISOString().split('T')[0].replace(/-/g, '')}_v${fileNum}.sql`,
       data: new Date().toLocaleDateString('pt-BR'),
       tamanho: '45.1 MB',
       tipo: 'manual'
@@ -455,9 +456,9 @@ export default function App() {
 
   return (
     <div className="flex h-screen bg-[#F8FAFC] dark:bg-[#070814] text-slate-800 dark:text-slate-100 font-sans transition-colors overflow-hidden">
-      
+
       {/* Sidebar drawer handles */}
-      <Sidebar 
+      <Sidebar
         currentView={currentView}
         onNavigate={navigateTo}
         isOpen={sidebarOpen}
@@ -466,9 +467,9 @@ export default function App() {
 
       {/* Main app panel */}
       <div className="flex-1 flex flex-col h-screen overflow-hidden">
-        
+
         {/* Header toolbar */}
-        <Header 
+        <Header
           onSearch={handleGlobalSearch}
           notificacoes={notificacoes}
           onMarkAsRead={handleClearNotifications}
@@ -481,10 +482,10 @@ export default function App() {
 
         {/* Dynamic scrollable body containing active views */}
         <main className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-slate-200">
-          
+
           {/* Hamburger trigger for small monitors */}
           <div className="lg:hidden pb-4">
-            <button 
+            <button
               onClick={() => setSidebarOpen(true)}
               className="p-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-650 dark:text-slate-250 flex items-center justify-center transition"
             >
@@ -495,7 +496,7 @@ export default function App() {
 
           {/* Router dispatcher switcher */}
           {singleSelectedAta ? (
-            <VisualizarAtaView 
+            <VisualizarAtaView
               ata={singleSelectedAta}
               categoria={categorias.find(c => c.id === singleSelectedAta.categoriaId)}
               onBack={() => setSelectedAtaId(null)}
@@ -505,7 +506,7 @@ export default function App() {
               currentUser={currentUser}
             />
           ) : singleEditingAta ? (
-            <EditarAtaView 
+            <EditarAtaView
               ata={singleEditingAta}
               categorias={categorias}
               onSave={handleUpdateAta}
@@ -515,7 +516,7 @@ export default function App() {
             switch (currentView) {
               case 'dashboard':
                 return (
-                  <DashboardView 
+                  <DashboardView
                     atas={atas}
                     categorias={categorias}
                     audits={auditLogs}
@@ -528,7 +529,7 @@ export default function App() {
                 );
               case 'datas':
                 return (
-                  <AtasView 
+                  <AtasView
                     atas={atas}
                     categorias={categorias}
                     onSelectAta={(a) => setSelectedAtaId(a.id)}
@@ -541,7 +542,7 @@ export default function App() {
                 );
               case 'nova-ata':
                 return (
-                  <NovaAtaView 
+                  <NovaAtaView
                     categorias={categorias}
                     onSave={handleSaveNewAta}
                     onCancel={() => navigateTo('datas')}
@@ -549,7 +550,7 @@ export default function App() {
                 );
               case 'categories':
                 return (
-                  <CategoriesView 
+                  <CategoriesView
                     categorias={categorias}
                     atas={atas}
                     onAddCategory={handleAddCategory}
@@ -560,7 +561,7 @@ export default function App() {
                 return <UploadsView />;
               case 'central':
                 return (
-                  <DocumentosCentral 
+                  <DocumentosCentral
                     atas={atas}
                     categorias={categorias}
                     onSelectAta={(a) => setSelectedAtaId(a.id)}
@@ -568,7 +569,7 @@ export default function App() {
                 );
               case 'lixeira':
                 return (
-                  <LixeiraView 
+                  <LixeiraView
                     atas={atas}
                     onRestore={handleRestoreAta}
                     onPurge={handlePurgeAta}
@@ -576,7 +577,7 @@ export default function App() {
                 );
               case 'usuarios':
                 return (
-                  <UsersView 
+                  <UsersView
                     usuarios={usuarios}
                     onAddUser={handleAddUser}
                     onUpdateUserStatus={handleUpdateUserStatus}
@@ -587,7 +588,7 @@ export default function App() {
                 return <PermissionsView />;
               case 'assinaturas':
                 return (
-                  <AssinaturasQueueView 
+                  <AssinaturasQueueView
                     atas={atas}
                     onSign={handleSignDocument}
                     currentUser={currentUser}
@@ -595,14 +596,14 @@ export default function App() {
                 );
               case 'aprovacoes':
                 return (
-                  <AprovacoesView 
+                  <AprovacoesView
                     atas={atas}
                     onUpdateStatus={handleStatusAprovacaoUpdate}
                   />
                 );
               case 'relatorios':
                 return (
-                  <ReportsView 
+                  <ReportsView
                     atas={atas}
                     categorias={categorias}
                   />
@@ -611,21 +612,21 @@ export default function App() {
                 return <AuditoriaView logs={auditLogs} />;
               case 'backup':
                 return (
-                  <BackupView 
+                  <BackupView
                     backups={backups}
                     onTriggerBackup={handleTriggerBackup}
                   />
                 );
               case 'configuracoes':
                 return (
-                  <ConfigurationView 
+                  <ConfigurationView
                     config={config}
                     onSaveConfig={setConfig}
                   />
                 );
               default:
                 return (
-                  <DashboardView 
+                  <DashboardView
                     atas={atas}
                     categorias={categorias}
                     audits={auditLogs}
@@ -638,7 +639,7 @@ export default function App() {
                 );
             }
           })()}
-          
+
         </main>
 
       </div>
