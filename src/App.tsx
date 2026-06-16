@@ -116,7 +116,6 @@ export default function App() {
     return initialBackups;
   });
 
-
   const [config, setConfig] = useState<ConfigGeral>(() => {
     const saved = localStorage.getItem('oficial_docs_config');
     if (saved) {
@@ -175,11 +174,11 @@ export default function App() {
   // Create audit helper
   const addAuditLog = (acao: string, tipo: string) => {
     const newLog: LogAuditoria = {
-      id: 'log-' + Math.random().toString(36).substr(2, 9),
+      id: 'log-' + crypto.randomUUID(),
       usuario: currentUser?.nome || 'Sistema',
       acao,
       data: new Date().toLocaleDateString('pt-BR'),
-      hora: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+      hour: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
       ip: '192.168.1.' + Math.floor(Math.random() * 254 + 1),
       tipo
     };
@@ -189,7 +188,7 @@ export default function App() {
   // Create notification helper
   const addNotification = (titulo: string, des: string, type: Notificacao['tipo']) => {
     const newNot: Notificacao = {
-      id: 'not-' + Math.random().toString(36).substr(2, 9),
+      id: 'not-' + crypto.randomUUID(),
       titulo,
       descricao: des,
       data: 'Agora mesmo',
@@ -243,7 +242,7 @@ export default function App() {
     newAta: Omit<Ata, 'id' | 'downloads' | 'comentarios' | 'historicoVersoes' | 'assinaturas'>,
     publishImmediately: boolean
   ) => {
-    const randId = 'ata-' + Math.floor(Math.random() * 10000);
+    const randId = 'ata-' + crypto.randomUUID();
     const hist: Ata['historicoVersoes'] = [
       {
         id: 'ver-1.0',
@@ -267,7 +266,7 @@ export default function App() {
       comentarios: [],
       historicoVersoes: hist,
       assinaturas: signatures,
-      status: publishImmediately ? 'publicado' : 'rascunho',
+      status: publishImmediately ? ('publicado' as AtaStatus) : ('rascunho' as AtaStatus),
       favorito: false,
       excluido: false
     };
@@ -342,7 +341,7 @@ export default function App() {
     setAtas(prev => prev.map(a => {
       if (a.id === ataId) {
         const comment: Ata['comentarios'][0] = {
-          id: 'com-' + Math.random().toString(36).substr(2, 9),
+          id: 'com-' + crypto.randomUUID(),
           autor: currentUser?.nome || 'Anônimo',
           texto,
           data: new Date().toLocaleDateString('pt-BR') + ' ' + new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
@@ -368,7 +367,7 @@ export default function App() {
               ...sig,
               status: 'concluido' as const,
               dataAssinatura: new Date().toLocaleDateString('pt-BR') + ' ' + new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
-              hash: 'SHA256: ' + Math.random().toString(36).substr(2, 12) + Math.random().toString(36).substr(2, 12)
+              hash: 'SHA256: ' + crypto.randomUUID().replace(/-/g, '').substring(0, 24)
             };
           }
           return sig;
@@ -380,7 +379,7 @@ export default function App() {
         return {
           ...a,
           assinaturas: updatedSigs,
-          status: allSigned ? 'publicado' as const : a.status
+          status: allSigned ? ('publicado' as AtaStatus) : a.status
         };
       }
       return a;
@@ -420,7 +419,7 @@ export default function App() {
   const handleTriggerBackup = () => {
     const fileNum = backups.length + 1;
     const newBak: BackupItem = {
-      id: 'bak-' + Math.random().toString(36).substr(2, 9),
+      id: 'bak-' + crypto.randomUUID(),
       nome: `backup_regimento_manual_${new Date().toISOString().split('T')[0].replace(/-/g, '')}_v${fileNum}.sql`,
       data: new Date().toLocaleDateString('pt-BR'),
       tamanho: '45.1 MB',
