@@ -1007,6 +1007,7 @@ export function DocumentosCentral({ atas, categorias, onSelectAta }: DocumentosP
   );
 }
 
+
 // ==========================================
 // 13. RELATÓRIOS (REPORT COMPONENT WITH SEVERAL CHARTS)
 // ==========================================
